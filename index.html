@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>IOT Smart Home — Intelligence Built Into Every Wall</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Home — An IoT and Computer Vision Powered Mini-House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Sans+3:wght@400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy: #0d1f3c;
@@ -38,8 +38,6 @@
     line-height: 1.75;
     overflow-x: hidden;
   }
-  body::before { display: none; }
-  body::after { display: none; }
 
   /* ── Typography ── */
   h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.15; color: var(--navy); }
@@ -70,6 +68,7 @@
     border-radius: 4px;
     display: flex; align-items: center; justify-content: center;
     font-size: 18px;
+    color: var(--gold2);
   }
   .logo-text {
     font-family: 'Playfair Display', serif;
@@ -79,7 +78,7 @@
     letter-spacing: 0.01em;
   }
   .logo-text span { color: var(--gold); }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
   .nav-links a {
     color: var(--text2);
     text-decoration: none;
@@ -150,18 +149,18 @@
     50% { opacity: 0.4; transform: scale(0.8); }
   }
   .hero h1 {
-    font-size: clamp(2.6rem, 4.5vw, 3.8rem);
+    font-size: clamp(2.4rem, 4.2vw, 3.6rem);
     font-weight: 800;
     color: var(--navy);
     margin-bottom: 1.5rem;
     letter-spacing: -0.01em;
-    line-height: 1.1;
+    line-height: 1.15;
   }
   .hero h1 .line-accent { color: var(--gold); display: block; }
   .hero p {
     font-size: 1.05rem;
     color: var(--text2);
-    max-width: 500px;
+    max-width: 520px;
     margin-bottom: 2.5rem;
     line-height: 1.85;
     font-weight: 400;
@@ -182,7 +181,6 @@
     letter-spacing: 0.05em;
     text-transform: uppercase;
     display: inline-block;
-    letter-spacing: 0.05em;
   }
   .btn-primary:hover {
     background: var(--gold);
@@ -285,11 +283,9 @@
   .cam-text { font-family: 'Source Code Pro', monospace; font-size: 0.58rem; color: #2ecc71; letter-spacing: 0.1em; }
   .rec-dot { width: 6px; height: 6px; background: #e74c3c; border-radius: 50%; display: inline-block; margin-right: 4px; animation: pulse 1s infinite; }
 
-  .battery-bar { height: 5px; background: var(--light-gray); border-radius: 0; margin-top: 8px; overflow: hidden; }
-  .battery-fill { height: 100%; width: 78%; background: linear-gradient(90deg, #27ae60, #2ecc71); border-radius: 0; }
-  .nodes-row { display: flex; gap: 6px; margin-top: 6px; }
+  .nodes-row { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
   .node {
-    flex: 1; height: 22px; border-radius: 0;
+    flex: 1; min-width: 90px; height: 22px; border-radius: 0;
     display: flex; align-items: center; justify-content: center;
     font-family: 'Source Code Pro', monospace;
     font-size: 0.52rem; letter-spacing: 0.04em;
@@ -319,8 +315,11 @@
   }
   .stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin-top: 0.5rem; letter-spacing: 0.06em; text-transform: uppercase; }
 
-  /* ── FEATURES ── */
+  /* ── Shared section styles ── */
   .features { padding: 7rem 0; background: var(--white); }
+  .how { padding: 7rem 0; background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .tech { padding: 7rem 0; background: var(--white); }
+
   .section-tag {
     font-family: 'Source Code Pro', monospace;
     font-size: 0.7rem;
@@ -338,8 +337,9 @@
     letter-spacing: -0.01em;
     color: var(--navy);
   }
-  .section-sub { font-size: 1rem; color: var(--text2); max-width: 560px; margin-bottom: 4rem; line-height: 1.8; }
+  .section-sub { font-size: 1rem; color: var(--text2); max-width: 600px; margin-bottom: 4rem; line-height: 1.8; }
 
+  /* ── FEATURES GRID ── */
   .features-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -366,9 +366,16 @@
   .feature-card.featured {
     background: var(--off-white);
     border-color: var(--navy);
-    grid-column: span 2;
   }
   .feature-card.featured::before { height: 100%; background: var(--gold); width: 3px; }
+  .feature-card.full {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .feature-card.full .feature-icon { margin-bottom: 0; flex-shrink: 0; }
+  .feature-card.full .feature-body { flex: 1; }
   .feature-icon {
     width: 44px; height: 44px;
     border-radius: 2px;
@@ -399,8 +406,40 @@
   .feature-tag.orange { color: var(--gold); background: rgba(184,146,42,0.08); }
   .feature-tag.purple { color: #6c5ce7; background: rgba(108,92,231,0.07); }
 
+  /* ── PROBLEM ── */
+  .problem-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem; align-items: start; margin-top: 1rem; }
+  .problem-text { font-size: 1rem; color: var(--text2); line-height: 1.9; }
+
+  /* ── SPEC / CHECK LISTS ── */
+  .spec-list { list-style: none; display: grid; gap: 0.75rem; }
+  .spec-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+  }
+  .spec-item:hover { border-left-color: var(--gold); background: var(--white); box-shadow: var(--shadow); }
+  .spec-ic {
+    width: 32px; height: 32px; flex-shrink: 0;
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .spec-ic.blue { background: rgba(13,31,60,0.08); }
+  .spec-ic.green { background: rgba(39,174,96,0.08); }
+  .spec-ic.orange { background: rgba(184,146,42,0.1); }
+  .spec-ic.purple { background: rgba(108,92,231,0.08); }
+  .spec-title { font-size: 0.88rem; font-weight: 600; color: var(--navy); }
+  .spec-desc { font-size: 0.78rem; color: var(--text2); margin-top: 2px; }
+
+  .check-list { list-style: none; display: grid; gap: 0.75rem; }
+  .check-item { display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.92rem; color: var(--text2); line-height: 1.7; }
+  .check-ic { color: #27ae60; font-weight: 700; flex-shrink: 0; }
+
   /* ── HOW IT WORKS ── */
-  .how { padding: 7rem 0; background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; margin-top: 4rem; }
   .steps::before {
     content: '';
@@ -429,8 +468,7 @@
   .step h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--navy); font-family: 'Playfair Display', serif; }
   .step p { font-size: 0.82rem; color: var(--text2); line-height: 1.7; }
 
-  /* ── TECH SPECS ── */
-  .tech { padding: 7rem 0; background: var(--white); }
+  /* ── TECH / ARCHITECTURE ── */
   .tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 1rem; }
   .tech-visual {
     background: var(--navy);
@@ -440,96 +478,55 @@
     box-shadow: var(--shadow2);
   }
   .arch-diagram { width: 100%; }
-  .arch-node {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 0.65rem;
+
+  /* ── RESULTS ── */
+  .result-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin: 2.5rem 0; }
+  .result-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--navy);
+    border-radius: 2px;
+    padding: 1.5rem;
+    text-align: center;
   }
-  .spec-list { list-style: none; display: grid; gap: 0.75rem; }
-  .spec-item {
-    display: flex; align-items: flex-start; gap: 1rem;
-    padding: 1rem 1.25rem;
+  .result-card.gold { border-top-color: var(--gold); }
+  .result-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: var(--navy); }
+  .result-label { font-size: 0.78rem; color: var(--text2); margin-top: 0.4rem; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ── TEAM ── */
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1rem; }
+  .team-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 1.75rem 1.25rem;
+    text-align: center;
+    transition: all 0.25s;
+  }
+  .team-card:hover { border-color: var(--navy3); transform: translateY(-3px); box-shadow: var(--shadow2); }
+  .team-avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
     background: var(--off-white);
     border: 1px solid var(--border);
-    border-radius: 2px;
-    transition: all 0.2s;
-    border-left: 3px solid transparent;
-  }
-  .spec-item:hover { border-left-color: var(--gold); background: var(--white); box-shadow: var(--shadow); }
-  .spec-ic {
-    width: 32px; height: 32px; flex-shrink: 0;
-    border-radius: 2px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 14px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--navy);
+    margin: 0 auto 0.9rem;
   }
-  .spec-ic.blue { background: rgba(13,31,60,0.08); }
-  .spec-ic.green { background: rgba(39,174,96,0.08); }
-  .spec-ic.orange { background: rgba(184,146,42,0.1); }
-  .spec-ic.purple { background: rgba(108,92,231,0.08); }
-  .spec-title { font-size: 0.88rem; font-weight: 600; color: var(--navy); }
-  .spec-desc { font-size: 0.78rem; color: var(--text2); margin-top: 2px; }
+  .team-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); }
+  .team-role { font-size: 0.72rem; color: var(--text3); margin-top: 4px; font-family: 'Source Code Pro', monospace; text-transform: uppercase; letter-spacing: 0.08em; }
 
-  /* ── DASHBOARD PREVIEW ── */
-  .preview { padding: 7rem 0; background: var(--off-white); overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .preview-inner { display: grid; grid-template-columns: 1fr 1.3fr; gap: 4rem; align-items: center; }
-  .preview-visual {
-    background: var(--white);
+  .supervisor-card {
+    display: flex; align-items: center; gap: 1.25rem;
+    background: var(--off-white);
     border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
     border-radius: 2px;
-    overflow: hidden;
-    box-shadow: var(--shadow2);
-  }
-  .pv-header {
-    background: var(--navy);
-    padding: 1rem 1.5rem;
-    display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .pv-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.85rem; color: var(--white); }
-  .pv-status { display: flex; align-items: center; gap: 6px; font-family: 'Source Code Pro', monospace; font-size: 0.6rem; color: #2ecc71; }
-  .pv-body { padding: 1.25rem; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; background: var(--off-white); }
-  .pv-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    padding: 0.9rem;
-    border-top: 2px solid var(--navy);
-  }
-  .pv-card-icon { font-size: 18px; margin-bottom: 0.4rem; }
-  .pv-card-name { font-size: 0.62rem; color: var(--text3); font-family: 'Source Code Pro', monospace; text-transform: uppercase; letter-spacing: 0.1em; }
-  .pv-card-val { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-top: 4px; color: var(--navy); }
-  .pv-card-val.on { color: #27ae60; }
-  .pv-card-val.off { color: var(--mid-gray); }
-  .pv-card-val.warn { color: var(--gold); }
-  .pv-card-val.blue { color: var(--navy); }
-  .toggle-row { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
-  .toggle {
-    width: 32px; height: 17px;
-    border-radius: 100px;
-    position: relative;
-    cursor: pointer;
-    border: none; outline: none;
-    transition: background 0.2s;
-  }
-  .toggle.active { background: #27ae60; }
-  .toggle.inactive { background: var(--light-gray); }
-  .toggle::after {
-    content: '';
-    position: absolute;
-    width: 11px; height: 11px;
-    border-radius: 50%; background: white;
-    top: 3px;
-    transition: left 0.2s;
-  }
-  .toggle.active::after { left: 18px; }
-  .toggle.inactive::after { left: 3px; }
-  .pv-cam {
-    grid-column: 1 / -1;
-    background: var(--navy);
-    border: 1px solid var(--border);
-    border-radius: 0;
-    height: 90px;
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
+    padding: 1.5rem 1.75rem;
+    margin-top: 2rem;
   }
 
   /* ── CTA ── */
@@ -546,12 +543,15 @@
     pointer-events: none;
   }
   .cta-section h2 { font-size: clamp(2rem, 3.8vw, 3.2rem); font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.01em; color: var(--white); }
-  .cta-section p { font-size: 1.05rem; color: rgba(255,255,255,0.6); max-width: 500px; margin: 0 auto 2.5rem; }
+  .cta-section p { font-size: 1.05rem; color: rgba(255,255,255,0.6); max-width: 540px; margin: 0 auto 2.5rem; }
   .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
   .cta-section .btn-primary { background: var(--gold); border-color: var(--gold); color: var(--white); }
   .cta-section .btn-primary:hover { background: var(--gold2); border-color: var(--gold2); }
   .cta-section .btn-ghost { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.25); }
   .cta-section .btn-ghost:hover { color: var(--white); border-color: var(--white); }
+  .cta-section .cta-extra { margin-top: 2rem; font-size: 0.85rem; }
+  .cta-section .cta-extra a { color: var(--gold2); text-decoration: none; border-bottom: 1px solid rgba(212,168,67,0.4); }
+  .cta-section .cta-extra a:hover { color: var(--white); border-color: var(--white); }
 
   /* ── FOOTER ── */
   footer {
@@ -564,7 +564,7 @@
     flex-wrap: wrap; gap: 1rem;
   }
   .footer-copy { font-size: 0.8rem; color: var(--text3); }
-  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links { display: flex; gap: 1.75rem; list-style: none; flex-wrap: wrap; }
   .footer-links a { font-size: 0.8rem; color: var(--text3); text-decoration: none; transition: color 0.2s; text-transform: uppercase; letter-spacing: 0.06em; }
   .footer-links a:hover { color: var(--navy); }
 
@@ -580,9 +580,12 @@
 
   /* ── Responsive ── */
   @media (max-width: 900px) {
-    .hero-inner, .tech-grid, .preview-inner { grid-template-columns: 1fr; }
+    .hero-inner, .tech-grid { grid-template-columns: 1fr; }
     .features-grid { grid-template-columns: 1fr 1fr; }
-    .feature-card.featured { grid-column: span 1; }
+    .feature-card.full { grid-column: span 2; flex-direction: column; align-items: flex-start; }
+    .problem-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .result-grid { grid-template-columns: repeat(2, 1fr); }
     .steps { grid-template-columns: 1fr 1fr; }
     .steps::before { display: none; }
     .stats-grid { grid-template-columns: 1fr 1fr; }
@@ -590,8 +593,11 @@
   }
   @media (max-width: 600px) {
     .features-grid { grid-template-columns: 1fr; }
-    .pv-body { grid-template-columns: 1fr 1fr; }
+    .feature-card.full { grid-column: span 1; }
+    .team-grid { grid-template-columns: 1fr; }
+    .result-grid { grid-template-columns: 1fr 1fr; }
     .stats-grid { grid-template-columns: 1fr 1fr; }
+    .supervisor-card { flex-direction: column; text-align: center; }
   }
 </style>
 </head>
@@ -600,16 +606,17 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">
-    <img src="data:image/jpeg;base64,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88888888888oG+B9AX8f888888888tCCU9pDU88888888888888888888888888888888888888CWrF8A/088888888888DAU9pDS+8888888888888888888888888888888888888BWrVoC/288888888888mOwwAAB18888888888888888888888888888888888888q+D9oW7W88885i18888888888888888888888888888888888888888888888888qWB8AXrGV882T8N/888888888888888888888888888888888888888888888888eWB8AXrC8fmrCG8OY88888888888888888888888888888888888888888888888q2B9AfrC8R9qCC89J3+8888888888888888888888888888888888888888888888ZJ9AfrG8B9+CC089Buy8888888888888888888888888888888888888888888889I8A/rW8B/6RYf8AaQ9/i3fPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPCPhP41qBfzXvO/YQQ/vjkcfPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPAPw3qEj/ADzzywEMMb775/DzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzbbsL4E3zzzzzy6MMNf777znzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz1ysadzzz/fr3nzy8DOMMMGPfzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz2BR7zzwH3+H3zzwkMU0123fzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzxT/z63zzzxz33jzCjbzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzwITgPHzzzz7zKIIJLTzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw1T5ILzzzzaIIII4Lbzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz/jTzDDfzzzzy5z84zzzzzgIYb/+5/zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzwNWhatLzzzzzzzzzzzzzzygJ57//APU88888888888888888888888888888888888UB8A/DSW8888888888888F/wD/AP3GH3zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz0tUjUsLHzzzzzzzzzzzz13HGEEEBbzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy65GxD8NLLzzzzzzzzzzwkEAAwzzzfzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy74HUhesOzXzzzzzzzz61zzzzzzDHzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzxW5GwD8tL4nj3zzzGf7zz7KIMM+zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzYnWhK8tLyzyo3mzzqIMMc8/8A/d88888888888888888888888888888888888888z+B9I2vDy+8888+yDHPP/wC8hFfPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPnaUfAN7w8ssssgx3/+8ghCF/PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPvQ9bAN7ywwzz/APuIIAxzkTzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz+jGwDL/wD/AO8oghHPOvHPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPXthAEAABDHPPZrPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPHL/ALz4x+x/zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz/2gAMAwEAAgADAAAAEPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPOvtd6GF/stvPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPODl16KR+h/SJ+Vt/PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPfDlVA6tF6l/QEPj1OPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPOvh+lVI+1E6l/QAPvwaNPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPJEF6rVF4PU6lfSEvvwVV0PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPOxRK2pofFxIXoheQAvu4el1EvPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPJeXF4uRKumT8BT4QkvvweHwON/PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPLvBKalROl1hvfPPzP/8A+kG5ZCrbzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyDtQWangfN/zzzzzzyoDEG4Yn4DzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyrlxdYSunzzzzzzzzzywFWpena3zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyqmnrdQf7zzzzzzzzzzyjepWlL/AP8APPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPAaLaqXl3PPPPPPPPPPPGvQ8xvvfvPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPIVBVqamy/PPPOLPvPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPA/F1xK6u0vPNpAtcPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPqF1xK6vdM6CVeAjEfPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPOSF1lI6tVhsKxfAt2GP/ADzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzxF9ZSOrlZVD9HwoL1QPfTzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyl5dQOql5ULtK6selYpHrTTzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyhxheampl5H/wnWHz4NUzPzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzhVdaWqk7zzzz0777sPHU3LzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzippdRWXzzzzzz3X76oMMNJnzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy2rlj/zzHrzXrzz385777Br/wA8888888888888888888888888888888888888888cG7f8888V9jj888vpkNNft3888888888888888888888888888888888888888888888888MZ/wD2PPPPN885gjsNvPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPF/r/jPPPPEQjHPNbN/PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPoKLFPPPPK3OYQTUX/PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPu+9MPO//ADzzy83/AN98888E5FH++v288888888888888888888888888888888888CqpqqtTV8888888888888pDffqiiW888888888888888888888888888888888883XXUXWt28888888888888G+6yANd+88888888888888888888888888888888888TZ6ZZK9e8888888888888CNNd5xgX88888888888888888888888888888888888ckmtk3U9088888888888KxggMO+6d888888888888888888888888888888888888UTacrq0Rd88888888/wBnvssswz3fPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPKJJp1FyrUu8e/PPMM6sgwTXeMLLvPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPHmC2qbp3rVrvi/8Am7IV3DAQwvMX3zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzwpRdJgqbQ1H7b7LE3AQw7Mc6A3zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz+Wu7VRu7Q00003iRvMc7LQk7zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy/wAZKt0bnKQAMOzneywNdmf88888888888888888888888888888888888888888888t6GlQOzzznOeyFd5w3f8APPPPPPPPPPPPPPPPPPPPPPPPPPPP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" class="logo-icon" style="width:38px;height:38px;object-fit:cover;border-radius:4px;"/>
-    <span class="logo-text">IOT <span>Smart</span> Home</span>
+    <span class="logo-icon">🏠</span>
+    <span class="logo-text">Smart <span>Home</span></span>
   </a>
   <ul class="nav-links">
+    <li><a href="#problem">Problem</a></li>
     <li><a href="#features">Features</a></li>
-    <li><a href="#how">How It Works</a></li>
-    <li><a href="#tech">Technology</a></li>
-    <li><a href="#dashboard">Dashboard</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#team">Team</a></li>
   </ul>
-  <a class="nav-cta" href="#contact">Request Demo</a>
+  <a class="nav-cta" href="https://github.com/astrousf/Smart-Home-An-IoT-and-Computer-Vision-Powered-Mini-House" target="_blank" rel="noopener">View on GitHub</a>
 </nav>
 
 <!-- HERO -->
@@ -619,19 +626,17 @@
       <div>
         <div class="hero-badge fade-up">
           <span class="badge-dot"></span>
-          System Online — All Nodes Active
+          Dual ESP32 Network — Online
         </div>
         <h1 class="fade-up delay-1">
-          Your Home.
-          <span class="line-accent">Fully Intelligent.</span>
-          Completely Yours.
+          One Smart System.
+          <span class="line-accent">Total Home Protection.</span>
+          Security, Safety &amp; Automation.
         </h1>
-        <p class="fade-up delay-2">A distributed IoT architecture that turns any home into a responsive, self-aware ecosystem — real-time surveillance, solar power, gas detection, and full remote control from any device.</p>
+        <p class="fade-up delay-2">An IoT and Computer Vision powered mini-house that brings RFID and keypad access control, live ESP32-CAM surveillance, environmental monitoring, and hazard detection together in a single, affordable platform — built on a dual ESP32 architecture.</p>
         <div class="hero-ctas fade-up delay-3">
           <a href="#features" class="btn-primary">Explore Features</a>
-          <a href="#dashboard" class="btn-ghost">
-            <span>▶</span> See the Dashboard
-          </a>
+          <a href="#architecture" class="btn-ghost"><span>▶</span> View Architecture</a>
         </div>
       </div>
 
@@ -639,43 +644,43 @@
         <div class="dashboard-frame">
           <div class="db-topbar">
             <div class="db-dot"></div><div class="db-dot"></div><div class="db-dot"></div>
-            <div class="db-title-bar">IOT_SMARTHOME — DASHBOARD v2.1</div>
+            <div class="db-title-bar">SMART_HOME — SYSTEM STATUS</div>
           </div>
           <div class="db-body">
             <div class="db-card">
               <div class="db-card-label">Temperature</div>
               <div class="db-card-value">24.3°C</div>
-              <div class="db-card-sub">Humidity: 61%</div>
-            </div>
-            <div class="db-card">
-              <div class="db-card-label">Battery</div>
-              <div class="db-card-value green">78%</div>
-              <div class="battery-bar"><div class="battery-fill"></div></div>
+              <div class="db-card-sub">DHT11 · Humidity 58%</div>
             </div>
             <div class="db-card">
               <div class="db-card-label">Gas Sensor</div>
               <div class="db-card-value green">Normal</div>
-              <div class="db-card-sub">MQ-2: 120 ppm</div>
+              <div class="db-card-sub">MQ-2: 110 ppm</div>
             </div>
             <div class="db-card">
-              <div class="db-card-label">Security</div>
-              <div class="db-card-value purple">Armed</div>
-              <div class="db-card-sub">4 PIR active</div>
+              <div class="db-card-label">Flame Sensor</div>
+              <div class="db-card-value green">Clear</div>
+              <div class="db-card-sub">No hazard detected</div>
+            </div>
+            <div class="db-card">
+              <div class="db-card-label">Access Control</div>
+              <div class="db-card-value purple">Authorized</div>
+              <div class="db-card-sub">RFID · Keypad</div>
             </div>
             <div class="db-card db-wide">
               <div class="db-card-label">Network Nodes</div>
               <div class="nodes-row">
-                <div class="node on">ESP32 ●</div>
-                <div class="node on">NodeMCU-1 ●</div>
-                <div class="node on">NodeMCU-2 ●</div>
-                <div class="node on">CAM-1 ●</div>
+                <div class="node on">ESP32 #1 ●</div>
+                <div class="node on">ESP32 #2 ●</div>
+                <div class="node on">CAM-Garage ●</div>
+                <div class="node on">CAM-Home ●</div>
               </div>
             </div>
             <div class="db-card db-wide">
-              <div class="db-card-label">Live Camera — Garage</div>
+              <div class="db-card-label">Live Camera — Garage Entrance</div>
               <div class="cam-feed">
                 <div class="cam-scan"></div>
-                <div class="cam-text"><span class="rec-dot"></span>LIVE · 1920×1080 · 30fps</div>
+                <div class="cam-text"><span class="rec-dot"></span>LIVE · ESP32-CAM · MOTION ARMED</div>
               </div>
             </div>
           </div>
@@ -685,79 +690,169 @@
   </div>
 </section>
 
-<!-- STATS -->
+<!-- RESULTS TEASER -->
 <section class="stats-strip">
   <div class="container">
     <div class="stats-grid">
       <div>
-        <div class="stat-num">6</div>
-        <div class="stat-label">Core Subsystems</div>
+        <div class="stat-num">95%</div>
+        <div class="stat-label">Detection Accuracy</div>
       </div>
       <div>
-        <div class="stat-num">3</div>
-        <div class="stat-label">Microcontrollers</div>
+        <div class="stat-num">0.5s</div>
+        <div class="stat-label">Response Time</div>
       </div>
       <div>
-        <div class="stat-num">24/7</div>
-        <div class="stat-label">Real-Time Monitoring</div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">ESP32 Controllers</div>
       </div>
       <div>
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Web Controllable</div>
+        <div class="stat-num">10</div>
+        <div class="stat-label">Integrated Sensors</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- PROBLEM STATEMENT -->
+<section class="features" id="problem">
+  <div class="container">
+    <div class="section-tag">// The Challenge</div>
+    <h2 class="section-title">Why Traditional Home Security<br>Falls Short</h2>
+    <div class="problem-grid">
+      <p class="problem-text">
+        Conventional home security setups tend to be costly, complicated to install, and narrowly focused — built for surveillance alone, or access control alone, rarely both. As a result, homeowners often end up running several disconnected systems just to cover security, monitoring, and hazard detection, which drives up both cost and complexity. This project sets out to close that gap with a single, affordable platform that brings security, safety, and automation together in one integrated smart home system.
+      </p>
+      <ul class="spec-list">
+        <li class="spec-item">
+          <div class="spec-ic blue">💰</div>
+          <div>
+            <div class="spec-title">Costly Add-Ons</div>
+            <div class="spec-desc">Separate alarms, cameras, and sensor kits each come with their own price tag, multiplying the total investment.</div>
+          </div>
+        </li>
+        <li class="spec-item">
+          <div class="spec-ic green">🛠️</div>
+          <div>
+            <div class="spec-title">Difficult Installation</div>
+            <div class="spec-desc">Many systems demand professional setup, wiring, and configuration before they're usable.</div>
+          </div>
+        </li>
+        <li class="spec-item">
+          <div class="spec-ic orange">🎯</div>
+          <div>
+            <div class="spec-title">Single-Purpose Design</div>
+            <div class="spec-desc">A typical system covers either surveillance or access control — rarely both — leaving gaps elsewhere.</div>
+          </div>
+        </li>
+        <li class="spec-item">
+          <div class="spec-ic purple">🧩</div>
+          <div>
+            <div class="spec-title">Disconnected Systems</div>
+            <div class="spec-desc">Running multiple independent platforms means multiple apps, logins, and points of failure.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / OBJECTIVES -->
+<section class="how" id="about">
+  <div class="container">
+    <div class="section-tag">// About the Project</div>
+    <h2 class="section-title">An IoT &amp; Computer Vision<br>Powered Mini-House</h2>
+    <p class="section-sub">The Smart Home: An IoT and Computer Vision Powered Mini-House is a low-cost smart home system built to strengthen residential security, safety, and automation. It brings together access control, surveillance, environmental monitoring, and hazard detection in a single platform — powered by ESP32-based controllers and a dedicated set of sensors and actuators working in concert.</p>
+
+    <ul class="check-list">
+      <li class="check-item"><span class="check-ic">✓</span> Develop a low-cost smart home security solution</li>
+      <li class="check-item"><span class="check-ic">✓</span> Implement real-time monitoring and surveillance</li>
+      <li class="check-item"><span class="check-ic">✓</span> Provide secure access control using RFID and keypad authentication</li>
+      <li class="check-item"><span class="check-ic">✓</span> Detect motion, gas leaks, fire hazards, and temperature changes</li>
+      <li class="check-item"><span class="check-ic">✓</span> Improve residential safety through automated alerts and responses</li>
+    </ul>
   </div>
 </section>
 
 <!-- FEATURES -->
 <section class="features" id="features">
   <div class="container">
-    <div class="section-tag">// Core Systems</div>
-    <h2 class="section-title">Everything Your Home Needs,<br>Nothing It Doesn't</h2>
-    <p class="section-sub">Six tightly integrated subsystems working in concert — from solar-powered sensors to live camera feeds — all orchestrated from a single dashboard.</p>
+    <div class="section-tag">// Core Features</div>
+    <h2 class="section-title">Everything a Smart Home<br>Needs to Stay Safe</h2>
+    <p class="section-sub">Ten integrated capabilities — spanning access control, surveillance, and hazard detection — all running on a dual ESP32 architecture.</p>
 
     <div class="features-grid">
 
-      <div class="feature-card featured">
+      <div class="feature-card featured full">
         <div class="feature-icon icon-blue">🧠</div>
-        <h3>Distributed Microcontroller Architecture</h3>
-        <p>A master-slave network of one ESP32 and two NodeMCUs divides work by physical zone. If one node drops offline, every other room stays fully operational. Wireless node communication over Wi-Fi eliminates long-distance cabling entirely.</p>
-        <span class="feature-tag">ESP32 · NodeMCU · Wi-Fi Mesh</span>
+        <div class="feature-body">
+          <h3>Dual ESP32 Architecture</h3>
+          <p>Two independent ESP32 controllers split the home into a Garage Control Unit and a Home Control Unit — each handling its own authentication, surveillance, and sensing, so the system keeps running smoothly across zones.</p>
+          <span class="feature-tag">ESP32 · ESP32-CAM</span>
+        </div>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon icon-green">☀️</div>
-        <h3>Green Energy & Smart Power</h3>
-        <p>Solar panel charges an 18650 Li-Ion cell via TP4056. A custom voltage divider reads real-time battery level as a 0–100% indicator — just like your phone.</p>
-        <span class="feature-tag green">Solar · TP4056 · Telemetry</span>
+        <div class="feature-icon icon-purple">🔑</div>
+        <h3>RFID Access Control</h3>
+        <p>Garage entry is secured with RFID RC522 authentication — only registered tags unlock the servo-driven garage door.</p>
+        <span class="feature-tag purple">RFID RC522</span>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon icon-purple">🛡️</div>
-        <h3>"Fort Knox" Security</h3>
-        <p>RFID keyless garage entry, ESP32-CAM live streaming to dashboard, and PIR motion sensors covering every room for intrusion detection and smart lighting automation.</p>
-        <span class="feature-tag purple">RFID · ESP32-CAM · PIR</span>
+        <div class="feature-icon icon-blue">🔢</div>
+        <h3>Keypad Authentication</h3>
+        <p>The home entrance uses a numeric keypad for secure, code-based access control at the Home Control Unit.</p>
+        <span class="feature-tag">Keypad</span>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon icon-orange">🚨</div>
-        <h3>Automated Safety Protocols</h3>
-        <p>MQ-2 gas sensor and flame detector continuously monitor the kitchen. On hazard detection, the system triggers exhaust fans automatically — no human intervention needed.</p>
-        <span class="feature-tag orange">MQ-2 · Flame · Auto-Mitigation</span>
+        <div class="feature-icon icon-purple">📹</div>
+        <h3>Real-Time Surveillance</h3>
+        <p>Two ESP32-CAM modules stream live video from the garage and home entrances for continuous visual monitoring.</p>
+        <span class="feature-tag purple">ESP32-CAM</span>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon icon-blue">🌬️</div>
-        <h3>Climate & Actuation Control</h3>
-        <p>DHT11/22 sensors track temperature and humidity live. L298N motor drivers handle garage doors and smart curtains; TIP122 transistors control DC fans safely.</p>
-        <span class="feature-tag">DHT · L298N · TIP122</span>
+        <div class="feature-icon icon-orange">🚶</div>
+        <h3>Motion Detection</h3>
+        <p>PIR sensors detect movement inside the home, triggering alerts and supporting automated responses.</p>
+        <span class="feature-tag orange">PIR Sensor</span>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon icon-purple">💻</div>
-        <h3>Dashboard</h3>
-        <p>A RESTful Laravel backend handles all microcontroller POST/GET requests. The sleek, responsive frontend lets you monitor sensors, view live cameras, and override any actuator from any device.</p>
-        <span class="feature-tag purple">Laravel · REST API · Responsive</span>
+        <div class="feature-icon icon-green">💨</div>
+        <h3>Gas Leak Detection</h3>
+        <p>An MQ-2 sensor continuously checks for gas leaks and raises an alarm the moment levels exceed a safe threshold.</p>
+        <span class="feature-tag green">MQ-2</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon icon-orange">🔥</div>
+        <h3>Flame Detection</h3>
+        <p>A dedicated flame sensor identifies fire hazards early, allowing the system to respond before conditions worsen.</p>
+        <span class="feature-tag orange">Flame Sensor</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon icon-blue">🌡️</div>
+        <h3>Temperature Monitoring</h3>
+        <p>A DHT11 sensor tracks ambient temperature and humidity, feeding live readings back to the system.</p>
+        <span class="feature-tag">DHT11</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon icon-purple">🚨</div>
+        <h3>Automated Alarm System</h3>
+        <p>Whenever a hazard or unauthorized access attempt is detected, a buzzer sounds immediately to alert occupants.</p>
+        <span class="feature-tag purple">Buzzer</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon icon-green">🚪</div>
+        <h3>Servo-Based Door Control</h3>
+        <p>Servo motors drive both the garage and home doors, opening automatically once access is authenticated.</p>
+        <span class="feature-tag green">Servo Motors</span>
       </div>
 
     </div>
@@ -772,228 +867,232 @@
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
-        <h4>Sensors Collect Data</h4>
-        <p>DHT, PIR, MQ-2, and voltage sensors continuously sample the environment across all zones.</p>
+        <h4>Authenticate</h4>
+        <p>RFID at the garage and a keypad at the home entrance verify identity before any door opens.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <h4>Nodes Process & Relay</h4>
-        <p>Each microcontroller handles its zone and relays data to the master ESP32 over Wi-Fi.</p>
+        <h4>Monitor</h4>
+        <p>Dual ESP32-CAM modules stream live video while PIR, MQ-2, flame, and DHT11 sensors continuously sample the environment.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <h4>Backend Stores & Serves</h4>
-        <p>The Laravel API receives POST requests, stores telemetry, and exposes it via clean endpoints.</p>
+        <h4>Detect</h4>
+        <p>Each ESP32 evaluates sensor data for motion, gas leaks, fire risk, or temperature anomalies in real time.</p>
       </div>
       <div class="step">
         <div class="step-num">04</div>
-        <h4>You Stay in Control</h4>
-        <p>The web dashboard displays everything in real time. Override any actuator with a single tap.</p>
+        <h4>Respond</h4>
+        <p>On any hazard or unauthorized entry, the buzzer and alarm trigger automatically — with an average response time of 0.5 seconds.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TECH SPECS -->
-<section class="tech" id="tech">
+<!-- SYSTEM ARCHITECTURE -->
+<section class="tech" id="architecture">
   <div class="container">
+    <div class="section-tag">// System Architecture</div>
+    <h2 class="section-title">A Dual-Controller Network, Built for Coverage</h2>
+    <p class="section-sub">Two independent ESP32 units divide the home into zones, each handling its own authentication, surveillance, and sensing — communicating over Wi-Fi for system-wide alerts.</p>
+
     <div class="tech-grid">
       <div>
-        <div class="section-tag">// Hardware Stack</div>
-        <h2 class="section-title">Built on Proven, Battle-Tested Components</h2>
-        <p style="color:var(--text2); margin-bottom: 2rem; font-size: 0.95rem;">Every component selected for reliability, repairability, and compatibility with the distributed architecture.</p>
-
         <ul class="spec-list">
           <li class="spec-item">
-            <div class="spec-ic blue">⚡</div>
+            <div class="spec-ic blue">🚪</div>
             <div>
-              <div class="spec-title">ESP32 + 2× NodeMCU</div>
-              <div class="spec-desc">Master-slave processing; zone-isolated failure handling</div>
+              <div class="spec-title">ESP32 #1 — Garage Control Unit</div>
+              <div class="spec-desc">RFID (RC522) authentication, ESP32-CAM surveillance, servo-driven garage door, and a buzzer notification system</div>
             </div>
           </li>
           <li class="spec-item">
-            <div class="spec-ic green">🔋</div>
+            <div class="spec-ic green">🏠</div>
             <div>
-              <div class="spec-title">5V Solar + 18650 + TP4056</div>
-              <div class="spec-desc">Hybrid charging, real-time voltage telemetry via divider circuit</div>
-            </div>
-          </li>
-          <li class="spec-item">
-            <div class="spec-ic purple">📡</div>
-            <div>
-              <div class="spec-title">RC522 RFID + ESP32-CAM</div>
-              <div class="spec-desc">Keyless entry + MJPEG live streaming to browser dashboard</div>
-            </div>
-          </li>
-          <li class="spec-item">
-            <div class="spec-ic orange">⚙️</div>
-            <div>
-              <div class="spec-title">L298N + TIP122 + Relays</div>
-              <div class="spec-desc">Motor control for doors & curtains; transistor-isolated fan control</div>
+              <div class="spec-title">ESP32 #2 — Home Control Unit</div>
+              <div class="spec-desc">Keypad authentication, ESP32-CAM surveillance, PIR motion sensors, MQ-2 gas sensor, flame sensor, DHT11 temperature sensor, and servo-based door control</div>
             </div>
           </li>
         </ul>
+
+        <div style="margin-top:1.75rem; display:flex; flex-wrap:wrap; gap:0.5rem;">
+          <span class="feature-tag">ESP32 / ESP32-CAM</span>
+          <span class="feature-tag green">Arduino IDE · C++</span>
+          <span class="feature-tag orange">Wi-Fi Communication</span>
+          <span class="feature-tag purple">RFID RC522</span>
+          <span class="feature-tag">DHT11</span>
+          <span class="feature-tag green">MQ-2 Gas Sensor</span>
+          <span class="feature-tag orange">PIR Motion Sensors</span>
+          <span class="feature-tag purple">Flame Sensor</span>
+          <span class="feature-tag">Servo Motors</span>
+        </div>
       </div>
 
       <div class="tech-visual">
-        <svg class="arch-diagram" viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Central ESP32 -->
-          <rect x="145" y="125" width="110" height="50" rx="4" fill="rgba(184,146,42,0.15)" stroke="rgba(184,146,42,0.6)" stroke-width="1.5"/>
-          <text x="200" y="146" text-anchor="middle" font-family="Source Code Pro" font-size="9" fill="#d4a843" font-weight="500">ESP32 MASTER</text>
-          <text x="200" y="162" text-anchor="middle" font-family="Source Code Pro" font-size="7" fill="rgba(255,255,255,0.35)">Central Hub</text>
+        <svg class="arch-diagram" viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="200" y="20" text-anchor="middle" font-family="Source Code Pro" font-size="9" fill="#d4a843" letter-spacing="0.1em">DUAL ESP32 SECURITY NETWORK</text>
 
-          <!-- NodeMCU 1 -->
-          <rect x="20" y="40" width="100" height="44" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-          <text x="70" y="58" text-anchor="middle" font-family="Source Code Pro" font-size="8" fill="rgba(255,255,255,0.8)">NodeMCU #1</text>
-          <text x="70" y="72" text-anchor="middle" font-family="Source Code Pro" font-size="6.5" fill="rgba(255,255,255,0.3)">Living / Kitchen</text>
+          <!-- ESP32 #1 -->
+          <rect x="45" y="158" width="110" height="48" rx="4" fill="rgba(184,146,42,0.15)" stroke="rgba(184,146,42,0.6)" stroke-width="1.5"></rect>
+          <text x="100" y="178" text-anchor="middle" font-family="Source Code Pro" font-size="9" fill="#d4a843" font-weight="500">ESP32 #1</text>
+          <text x="100" y="194" text-anchor="middle" font-family="Source Code Pro" font-size="6.5" fill="rgba(255,255,255,0.5)">Garage Control Unit</text>
 
-          <!-- NodeMCU 2 -->
-          <rect x="280" y="40" width="100" height="44" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-          <text x="330" y="58" text-anchor="middle" font-family="Source Code Pro" font-size="8" fill="rgba(255,255,255,0.8)">NodeMCU #2</text>
-          <text x="330" y="72" text-anchor="middle" font-family="Source Code Pro" font-size="6.5" fill="rgba(255,255,255,0.3)">Bedroom / Bath</text>
+          <!-- ESP32 #2 -->
+          <rect x="245" y="158" width="110" height="48" rx="4" fill="rgba(184,146,42,0.15)" stroke="rgba(184,146,42,0.6)" stroke-width="1.5"></rect>
+          <text x="300" y="178" text-anchor="middle" font-family="Source Code Pro" font-size="9" fill="#d4a843" font-weight="500">ESP32 #2</text>
+          <text x="300" y="194" text-anchor="middle" font-family="Source Code Pro" font-size="6.5" fill="rgba(255,255,255,0.5)">Home Control Unit</text>
 
-          <!-- Backend -->
-          <rect x="145" y="235" width="110" height="44" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-          <text x="200" y="253" text-anchor="middle" font-family="Source Code Pro" font-size="8" fill="rgba(255,255,255,0.8)">LARAVEL API</text>
-          <text x="200" y="267" text-anchor="middle" font-family="Source Code Pro" font-size="6.5" fill="rgba(255,255,255,0.3)">REST Backend</text>
+          <!-- Wi-Fi link -->
+          <line x1="155" y1="182" x2="245" y2="182" stroke="rgba(255,255,255,0.25)" stroke-width="1" stroke-dasharray="4 3"></line>
+          <text x="200" y="176" text-anchor="middle" font-family="Source Code Pro" font-size="6.5" fill="rgba(255,255,255,0.35)">Wi-Fi</text>
 
-          <!-- Dashboard -->
-          <rect x="60" y="235" width="70" height="44" rx="4" fill="rgba(184,146,42,0.1)" stroke="rgba(184,146,42,0.3)" stroke-width="1"/>
-          <text x="95" y="253" text-anchor="middle" font-family="Source Code Pro" font-size="7.5" fill="#d4a843">WEB UI</text>
-          <text x="95" y="267" text-anchor="middle" font-family="Source Code Pro" font-size="6.5" fill="rgba(255,255,255,0.3)">Dashboard</text>
+          <!-- Unit 1 top peripherals -->
+          <rect x="5" y="40" width="85" height="42" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.18)" stroke-width="1"></rect>
+          <text x="47.5" y="58" text-anchor="middle" font-family="Source Code Pro" font-size="7.5" fill="rgba(255,255,255,0.8)">RFID RC522</text>
+          <text x="47.5" y="71" text-anchor="middle" font-family="Source Code Pro" font-size="6" fill="rgba(255,255,255,0.3)">Garage Access</text>
 
-          <!-- Sensors box -->
-          <rect x="270" y="235" width="90" height="44" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <text x="315" y="250" text-anchor="middle" font-family="Source Code Pro" font-size="7" fill="rgba(255,255,255,0.7)">DHT · PIR</text>
-          <text x="315" y="263" text-anchor="middle" font-family="Source Code Pro" font-size="7" fill="rgba(255,255,255,0.7)">MQ2 · CAM</text>
-          <text x="315" y="275" text-anchor="middle" font-family="Source Code Pro" font-size="6" fill="rgba(255,255,255,0.3)">Sensors</text>
+          <rect x="105" y="40" width="85" height="42" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.18)" stroke-width="1"></rect>
+          <text x="147.5" y="58" text-anchor="middle" font-family="Source Code Pro" font-size="7.5" fill="rgba(255,255,255,0.8)">ESP32-CAM</text>
+          <text x="147.5" y="71" text-anchor="middle" font-family="Source Code Pro" font-size="6" fill="rgba(255,255,255,0.3)">Garage Surveillance</text>
 
-          <!-- Connecting lines -->
-          <line x1="120" y1="62" x2="145" y2="140" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 3"/>
-          <line x1="280" y1="62" x2="255" y2="140" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 3"/>
-          <line x1="200" y1="175" x2="200" y2="235" stroke="rgba(184,146,42,0.4)" stroke-width="1" stroke-dasharray="4 3"/>
-          <line x1="145" y1="253" x2="130" y2="257" stroke="rgba(184,146,42,0.3)" stroke-width="1"/>
-          <line x1="255" y1="253" x2="270" y2="257" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <!-- Unit 1 bottom peripherals -->
+          <rect x="5" y="278" width="85" height="42" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.18)" stroke-width="1"></rect>
+          <text x="47.5" y="296" text-anchor="middle" font-family="Source Code Pro" font-size="7.5" fill="rgba(255,255,255,0.8)">Servo Motor</text>
+          <text x="47.5" y="309" text-anchor="middle" font-family="Source Code Pro" font-size="6" fill="rgba(255,255,255,0.3)">Garage Door</text>
 
-          <!-- Wi-Fi labels -->
-          <text x="117" y="108" text-anchor="middle" font-family="Source Code Pro" font-size="6" fill="rgba(255,255,255,0.25)">Wi-Fi</text>
-          <text x="280" y="108" text-anchor="middle" font-family="Source Code Pro" font-size="6" fill="rgba(255,255,255,0.25)">Wi-Fi</text>
-          <text x="220" y="210" text-anchor="start" font-family="Source Code Pro" font-size="6" fill="rgba(255,255,255,0.25)">REST</text>
+          <rect x="105" y="278" width="85" height="42" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.18)" stroke-width="1"></rect>
+          <text x="147.5" y="296" text-anchor="middle" font-family="Source Code Pro" font-size="7.5" fill="rgba(255,255,255,0.8)">Buzzer</text>
+          <text x="147.5" y="309" text-anchor="middle" font-family="Source Code Pro" font-size="6" fill="rgba(255,255,255,0.3)">Alert System</text>
+
+          <!-- Unit 2 top peripherals -->
+          <rect x="210" y="40" width="85" height="42" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.18)" stroke-width="1"></rect>
+          <text x="252.5" y="58" text-anchor="middle" font-family="Source Code Pro" font-size="7.5" fill="rgba(255,255,255,0.8)">Keypad</text>
+          <text x="252.5" y="71" text-anchor="middle" font-family="Source Code Pro" font-size="6" fill="rgba(255,255,255,0.3)">Home Access</text>
+
+          <rect x="310" y="40" width="85" height="42" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.18)" stroke-width="1"></rect>
+          <text x="352.5" y="58" text-anchor="middle" font-family="Source Code Pro" font-size="7.5" fill="rgba(255,255,255,0.8)">ESP32-CAM</text>
+          <text x="352.5" y="71" text-anchor="middle" font-family="Source Code Pro" font-size="6" fill="rgba(255,255,255,0.3)">Home Surveillance</text>
+
+          <!-- Unit 2 bottom peripherals -->
+          <rect x="210" y="278" width="85" height="42" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.18)" stroke-width="1"></rect>
+          <text x="252.5" y="293" text-anchor="middle" font-family="Source Code Pro" font-size="6.5" fill="rgba(255,255,255,0.8)">PIR · MQ-2</text>
+          <text x="252.5" y="304" text-anchor="middle" font-family="Source Code Pro" font-size="6.5" fill="rgba(255,255,255,0.8)">Flame · DHT11</text>
+          <text x="252.5" y="315" text-anchor="middle" font-family="Source Code Pro" font-size="6" fill="rgba(255,255,255,0.3)">Sensor Suite</text>
+
+          <rect x="310" y="278" width="85" height="42" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.18)" stroke-width="1"></rect>
+          <text x="352.5" y="296" text-anchor="middle" font-family="Source Code Pro" font-size="7.5" fill="rgba(255,255,255,0.8)">Servo Motor</text>
+          <text x="352.5" y="309" text-anchor="middle" font-family="Source Code Pro" font-size="6" fill="rgba(255,255,255,0.3)">Door Control</text>
+
+          <!-- Connector lines unit 1 -->
+          <line x1="100" y1="158" x2="47.5" y2="82" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 3"></line>
+          <line x1="100" y1="158" x2="147.5" y2="82" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 3"></line>
+          <line x1="100" y1="206" x2="47.5" y2="278" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 3"></line>
+          <line x1="100" y1="206" x2="147.5" y2="278" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 3"></line>
+
+          <!-- Connector lines unit 2 -->
+          <line x1="300" y1="158" x2="252.5" y2="82" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 3"></line>
+          <line x1="300" y1="158" x2="352.5" y2="82" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 3"></line>
+          <line x1="300" y1="206" x2="252.5" y2="278" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 3"></line>
+          <line x1="300" y1="206" x2="352.5" y2="278" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 3"></line>
         </svg>
       </div>
     </div>
   </div>
 </section>
 
-<!-- DASHBOARD PREVIEW -->
-<section class="preview" id="dashboard">
+<!-- RESULTS -->
+<section class="how" id="results">
   <div class="container">
-    <div class="preview-inner">
-      <div>
-        <div class="section-tag">// Web Dashboard</div>
-        <h2 class="section-title">Full Control. Any Screen. Anywhere.</h2>
-        <p style="color:var(--text2); font-size: 0.95rem; margin: 1.25rem 0 2rem; line-height: 1.8;">
-          The dashboard puts your entire home at your fingertips. Toggle lights, unlock doors, watch live cameras, track battery and gas levels — all in one responsive interface built for any device.
-        </p>
-        <ul style="list-style:none; display: grid; gap: 0.75rem;">
-          <li style="display:flex; gap: 0.75rem; align-items:flex-start; font-size: 0.88rem; color: var(--text2);">
-            <span style="color: #27ae60; font-weight: 700; flex-shrink: 0;">✓</span>
-            Real-time sensor readings updating live without refresh
-          </li>
-          <li style="display:flex; gap: 0.75rem; align-items:flex-start; font-size: 0.88rem; color: var(--text2);">
-            <span style="color: #27ae60; font-weight: 700; flex-shrink: 0;">✓</span>
-            Manual actuator override — lights, fans, garage, curtains
-          </li>
-          <li style="display:flex; gap: 0.75rem; align-items:flex-start; font-size: 0.88rem; color: var(--text2);">
-            <span style="color: #27ae60; font-weight: 700; flex-shrink: 0;">✓</span>
-            Live MJPEG camera feeds from ESP32-CAM modules
-          </li>
-          <li style="display:flex; gap: 0.75rem; align-items:flex-start; font-size: 0.88rem; color: var(--text2);">
-            <span style="color: #27ae60; font-weight: 700; flex-shrink: 0;">✓</span>
-            Hazard alerts with visual and audio notification
-          </li>
-          <li style="display:flex; gap: 0.75rem; align-items:flex-start; font-size: 0.88rem; color: var(--text2);">
-            <span style="color: #27ae60; font-weight: 700; flex-shrink: 0;">✓</span>
-            Battery telemetry with solar charging status
-          </li>
-        </ul>
-      </div>
+    <div class="section-tag">// Results</div>
+    <h2 class="section-title">Reliable Performance Across<br>Every Subsystem</h2>
+    <p class="section-sub">Across testing, the system demonstrated reliable operation across its authentication, surveillance, monitoring, and hazard-detection subsystems — responding quickly and consistently while maintaining stable performance throughout.</p>
 
-      <div class="preview-visual">
-        <div class="pv-header">
-          <span class="pv-title">IOT Smart Home — Control Panel</span>
-          <span class="pv-status"><span class="badge-dot"></span> All systems online</span>
-        </div>
-        <div class="pv-body">
-          <div class="pv-card">
-            <div class="pv-card-icon">💡</div>
-            <div class="pv-card-name">Living Room</div>
-            <div class="pv-card-val on">ON</div>
-            <div class="toggle-row">
-              <span style="font-size:0.6rem; color: var(--text3); font-family: 'Source Code Pro'">PIR Auto</span>
-              <button class="toggle active" onclick="this.classList.toggle('active'); this.classList.toggle('inactive')"></button>
-            </div>
-          </div>
-          <div class="pv-card">
-            <div class="pv-card-icon">🌡️</div>
-            <div class="pv-card-name">Temperature</div>
-            <div class="pv-card-val blue">24.3°C</div>
-            <div style="font-size:0.65rem; color: var(--text3); margin-top:6px; font-family: 'Source Code Pro'">Humidity 61%</div>
-          </div>
-          <div class="pv-card">
-            <div class="pv-card-icon">🔒</div>
-            <div class="pv-card-name">Garage Door</div>
-            <div class="pv-card-val off">CLOSED</div>
-            <div class="toggle-row">
-              <span style="font-size:0.6rem; color: var(--text3); font-family: 'Source Code Pro'">RFID Lock</span>
-              <button class="toggle inactive" onclick="this.classList.toggle('active'); this.classList.toggle('inactive')"></button>
-            </div>
-          </div>
-          <div class="pv-card">
-            <div class="pv-card-icon">🔥</div>
-            <div class="pv-card-name">Gas / Flame</div>
-            <div class="pv-card-val on">Safe</div>
-            <div style="font-size:0.65rem; color: var(--text3); margin-top:6px; font-family: 'Source Code Pro'">120 ppm</div>
-          </div>
-          <div class="pv-card">
-            <div class="pv-card-icon">🌬️</div>
-            <div class="pv-card-name">Smart Fan</div>
-            <div class="pv-card-val on">ON · 75%</div>
-            <div class="toggle-row">
-              <span style="font-size:0.6rem; color: var(--text3); font-family: 'Source Code Pro'">Auto Cool</span>
-              <button class="toggle active" onclick="this.classList.toggle('active'); this.classList.toggle('inactive')"></button>
-            </div>
-          </div>
-          <div class="pv-card">
-            <div class="pv-card-icon">🔋</div>
-            <div class="pv-card-name">Solar Battery</div>
-            <div class="pv-card-val blue">78%</div>
-            <div class="battery-bar" style="margin-top: 8px;"><div class="battery-fill"></div></div>
-          </div>
-          <div class="pv-cam">
-            <div class="cam-scan"></div>
-            <div class="cam-text"><span class="rec-dot"></span>LIVE FEED — GARAGE · ESP32-CAM · 30fps</div>
-          </div>
-        </div>
+    <div class="result-grid">
+      <div class="result-card">
+        <div class="result-num">95%</div>
+        <div class="result-label">Detection Accuracy</div>
+      </div>
+      <div class="result-card gold">
+        <div class="result-num">0.5s</div>
+        <div class="result-label">Response Time</div>
+      </div>
+      <div class="result-card">
+        <div class="result-num">2</div>
+        <div class="result-label">ESP32 Controllers</div>
+      </div>
+      <div class="result-card gold">
+        <div class="result-num">10</div>
+        <div class="result-label">Integrated Sensors</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
+<!-- TEAM -->
+<section class="features" id="team">
+  <div class="container">
+    <div class="section-tag">// The Team</div>
+    <h2 class="section-title">Meet the Team</h2>
+    <p class="section-sub">The people behind the build — and the supervisor guiding the project.</p>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">YA</div>
+        <div class="team-name">Youssef Ayman</div>
+        <div class="team-role">Project Team</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">OW</div>
+        <div class="team-name">Omar Wael</div>
+        <div class="team-role">Project Team</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">TM</div>
+        <div class="team-name">Thomas Malak</div>
+        <div class="team-role">Project Team</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">YH</div>
+        <div class="team-name">Youssef Hesham</div>
+        <div class="team-role">Project Team</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">MH</div>
+        <div class="team-name">Mohamed Hossam</div>
+        <div class="team-role">Project Team</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">AT</div>
+        <div class="team-name">Abdelrahaman Tamer</div>
+        <div class="team-role">Project Team</div>
+      </div>
+      <!-- Add remaining team members here as additional .team-card blocks -->
+    </div>
+
+    <div class="supervisor-card">
+      <div class="team-avatar" style="margin:0;">HA</div>
+      <div>
+        <div class="team-name">Prof. Hesham Arafat</div>
+        <div class="team-role">Project Supervisor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
 <section class="cta-section" id="contact">
   <div class="cta-glow"></div>
   <div class="container">
-    <div class="section-tag" style="text-align:center;">// Get Started</div>
-    <h2>Ready to Make Your Home Intelligent?</h2>
-    <p>Get in touch to learn how IOT Smart Home can be tailored to your property and requirements.</p>
+    <div class="section-tag" style="text-align:center;">// Get in Touch</div>
+    <h2>Explore the Full Project</h2>
+    <p>Take a closer look at the build, browse the source code, or connect with the team behind the project.</p>
     <div class="cta-btns">
-      <a href="mailto:hello@iotsmarthome.io" class="btn-primary">Request a Demo</a>
-      <a href="#features" class="btn-ghost">Learn More</a>
+      <a href="https://qms.sut.edu.eg/web/projects/view/62" class="btn-primary" target="_blank" rel="noopener">View Project Page</a>
+      <a href="https://github.com/astrousf/Smart-Home-An-IoT-and-Computer-Vision-Powered-Mini-House" class="btn-ghost" target="_blank" rel="noopener">View on GitHub</a>
     </div>
-    <p style="margin-top: 2rem; font-family: 'Source Code Pro'; font-size: 0.7rem; color: var(--text3); letter-spacing: 0.08em;">
-      IOT_SMARTHOME · ESP32 · NODEMCU · LARAVEL · REST API
-    </p>
+    <div class="cta-extra">
+      <a href="https://www.linkedin.com/in/youssef-ayman-39b841343/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+    </div>
   </div>
 </section>
 
@@ -1002,13 +1101,14 @@
   <div class="container">
     <div class="footer-inner">
       <div>
-        <div class="logo-text" style="font-family:'Playfair Display',serif; font-weight:700; margin-bottom:4px;">IOT <span style="color: var(--gold)">Smart</span> Home</div>
-        <div class="footer-copy">© 2026 IOT Smart Home. All rights reserved.</div>
+        <div class="logo-text" style="font-family:'Playfair Display',serif; font-weight:700; margin-bottom:4px;">Smart <span style="color: var(--gold)">Home</span></div>
+        <div class="footer-copy">An IoT &amp; Computer Vision Powered Mini-House · © 2026</div>
       </div>
       <ul class="footer-links">
+        <li><a href="#problem">Problem</a></li>
         <li><a href="#features">Features</a></li>
-        <li><a href="#tech">Technology</a></li>
-        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#team">Team</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -1026,12 +1126,13 @@
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.feature-card, .spec-item, .step').forEach(el => {
+  document.querySelectorAll('.feature-card, .spec-item, .step, .team-card, .result-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
   });
 </script>
+
 </body>
 </html>
